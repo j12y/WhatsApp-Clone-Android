@@ -13,7 +13,13 @@
         <action
             android:id="@+id/nav_home_to_channel"
             app:destination="@id/nav_channel"
-            app:enterAnim="@anim/slide_up" />
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/nav_call3"
+            app:destination="@id/nav_call"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down" />
     </fragment>
     <fragment
         android:id="@+id/nav_channel"
@@ -26,5 +32,34 @@
         <argument
             android:name="channel_id"
             app:argType="string" />
+        <action
+            android:id="@+id/nav_call2"
+            app:destination="@id/nav_call"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_call"
+        android:name="com.example.whatsappclone.ui.call.CallView"
+        android:label="fragment_call"
+        tools:layout="@layout/fragment_call_view" >
+        <argument
+            android:name="channel_id"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="is_video_call"
+            app:argType="boolean" />
+        <argument
+            android:name="channel_type"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+        <argument
+            android:name="conference_id"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
     </fragment>
 </navigation>

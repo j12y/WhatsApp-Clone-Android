@@ -89,7 +89,5 @@
 
         android:src="@{TextUtils.isEmpty(viewModel.messageInputText) ? @drawable/ic_mic_black_24dp : @drawable/ic_send_black_24dp}"/>
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

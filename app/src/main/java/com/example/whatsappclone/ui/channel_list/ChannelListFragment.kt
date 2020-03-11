@@ -2,12 +2,13 @@ package com.example.whatsappclone.ui.channel_list
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.whatsappclone.VoxeetService
 import com.example.whatsappclone.databinding.FragmentChannelListBinding
 import com.example.whatsappclone.ui.home.HomeFragmentDirections
 import com.getstream.sdk.chat.StreamChat
@@ -17,10 +18,14 @@ import com.getstream.sdk.chat.rest.User
 import com.getstream.sdk.chat.viewmodel.ChannelListViewModel
 
 const val API_KEY = "s2dxdhpxd94g"
-const val USER_ID = "empty-queen-5"
 const val USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiZW1wdHktcXVlZW4tNSJ9.RJw-XeaPnUBKbbh71rV1bYAKXp6YaPARh68O08oRnOU"
 
+const val NAME = VoxeetService.NAME;
+const val IMAGE = VoxeetService.IMAGE;
+const val USER_ID = VoxeetService.USER_ID
+
 class ChannelListFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,8 +36,8 @@ class ChannelListFragment : Fragment() {
 
         val client = StreamChat.getInstance(activity!!.application)
         val extraData = HashMap<String, Any>()
-        extraData["name"] = "Paranoid Android"
-        extraData["image"] = "https://bit.ly/2TIt8NR"
+        extraData["name"] = NAME
+        extraData["image"] = IMAGE
         val currentUser = User(USER_ID, extraData)
 
         // User token is typically provided by your server when the user authenticates
@@ -55,7 +60,7 @@ class ChannelListFragment : Fragment() {
 
         // query all channels of type messaging
         val filter =
-            Filters.and(Filters.eq("type", "messaging"), Filters.`in`("members", "empty-queen-5"))
+            Filters.and(Filters.eq("type", "messaging"), Filters.`in`("members", USER_ID))
         viewModel.setChannelFilter(filter)
 
         // click handlers for clicking a user avatar or channel
@@ -67,6 +72,5 @@ class ChannelListFragment : Fragment() {
 
         return binding.root
     }
+
 }
-
-
